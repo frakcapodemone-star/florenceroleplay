@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Florence Roleplay</title>
+  <style>
+    :root{
+      --accent:#c77dff;
+      --accent2:#9d4edd;
+      --bg1:#0a0014;
+      --bg2:#1a0033;
+      --text:#fff;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:var(--bg1);
+      font-family: 'Segoe UI', sans-serif;
+      overflow:hidden;
+      color:var(--text);
+    }
+
+    /* Aurora background */
+    .aurora{
+      position:fixed;
+      inset:0;
+      background:radial-gradient(circle at 20% 40%, rgba(157,78,221,.5), transparent 60%),
+                 radial-gradient(circle at 80% 60%, rgba(199,125,255,.4), transparent 70%),
+                 radial-gradient(circle at 50% 100%, rgba(120,80,255,.35), transparent 80%);
+      animation:auroraMove 12s ease-in-out infinite alternate;
+      z-index:-2;
+    }
+    @keyframes auroraMove{
+      0%{background-position:20% 40%, 80% 60%, 50% 100%;}
+      100%{background-position:40% 30%, 70% 80%, 60% 90%;}
+    }
+
+    /* Overlay per atmosfera */
+    .overlay{
+      position:fixed; inset:0; background:linear-gradient(to top, rgba(0,0,0,.8), transparent 60%);
+      z-index:-1;
+    }
+
+    /* Title */
+    h1{
+      font-size:clamp(50px, 9vw, 130px);
+      font-weight:900;
+      letter-spacing:.08em;
+      color:var(--accent);
+      text-shadow:0 0 25px rgba(199,125,255,.8), 0 0 50px rgba(157,78,221,.6);
+      opacity:0;
+      transform:scale(1.4) translateY(40px) blur(10px);
+      animation:titleIn 3s ease-out forwards;
+    }
+    @keyframes titleIn{
+      0%{opacity:0; transform:scale(1.4) translateY(40px) blur(10px);}
+      60%{opacity:1;}
+      100%{opacity:1; transform:scale(1) translateY(0) blur(0);}
+    }
+
+    /* CTA */
+    .cta{
+      margin-top:24px;
+      font-size:22px;
+      text-decoration:none;
+      color:#fff;
+      background:linear-gradient(135deg, var(--accent), var(--accent2));
+      padding:14px 32px;
+      border-radius:999px;
+      font-weight:600;
+      box-shadow:0 0 20px rgba(199,125,255,.6);
+      opacity:0;
+      animation:fadeIn 2s ease 3s forwards, pulse 2.8s infinite 5s;
+      transition:transform .3s ease;
+    }
+    .cta:hover{ transform:scale(1.08); }
+    @keyframes fadeIn{
+      from{opacity:0; transform:translateY(20px);}
+      to{opacity:1; transform:translateY(0);}
+    }
+    @keyframes pulse{
+      0%,100%{transform:scale(1);}
+      50%{transform:scale(1.05);}
+    }
+
+    /* Particles */
+    .particle{
+      position:absolute;
+      border-radius:50%;
+      background:rgba(255,255,255,.5);
+      animation:float linear infinite;
+    }
+    @keyframes float{
+      from{transform:translateY(110vh);}
+      to{transform:translateY(-10vh);}
+    }
+  </style>
+</head>
+<body>
+  <div class="aurora"></div>
+  <div class="overlay"></div>
+  <main class="center">
+    <h1>Florence Roleplay</h1>
+    <a href="https://discord.gg/TE9r2YNkwy" class="cta">Entra</a>
+  </main>
+
+  <script>
+    // Genera particelle luminose
+    for(let i=0;i<60;i++){
+      const p=document.createElement("div");
+      p.classList.add("particle");
+      const size=Math.random()*3+2;
+      p.style.width=p.style.height=size+"px";
+      p.style.left=Math.random()*100+"vw";
+      p.style.animationDuration=(8+Math.random()*12)+"s";
+      p.style.animationDelay=(-Math.random()*15)+"s";
+      document.body.appendChild(p);
+    }
+  </script>
+</body>
+</html>
